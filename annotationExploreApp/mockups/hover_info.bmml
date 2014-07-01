@@ -1,0 +1,64 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1703" measuredH="789" mockupW="1585" mockupH="761">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="118" y="43" w="-1" h="-1" measuredW="1104" measuredH="721" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/v0.2.1.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TextArea" x="1260" y="118" w="354" h="173" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <bold>false</bold>
+        <borderColor>0</borderColor>
+        <color>16777215</color>
+        <text>signature%20types%20and%20levels%20of%20data%20refinement%20for%20each%3A%0A%20%0AL1000%3A%20differential%20gene%20expression%0A%09Lorem%2C%20Ipsum%20Dolor%2C%20Sit%20and%20Amet%0A%20%0AP100%3A%20%20differential%20protein%20level%0A%09Consectetur%2C%20Adipisicing%2C%20Elit%2C%20Sed%0A%20%0AImaging%3A%20%20differential%20bright%20spots%20on%20a%20blob%0A%09Do%2C%20Eiusmod%2C%20Tempor%2C%20Incididunt</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextArea" x="516" y="37" w="327" h="100" measuredW="200" measuredH="140" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <bold>false</bold>
+        <borderColor>0</borderColor>
+        <color>16777215</color>
+        <text>cell%20origins%20and%20examples%3A%0A%20%0Aprimary%20%284%29%20-%20Liver%2C%20Lung%2C%20Ear%2C%20...%0Acell%20line%20%2815%29%20-%20MFC7%2C%20KFC3%2C%20A549%2C%20...%0Aother%20%283%29%20-%20zebra%20fish%20spine%2C%20drosophilia%20anetenna%2C%20...%0A%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::StickyNote" x="660" y="118" w="198" h="86" measuredW="109" measuredH="123" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>this%20appears%20when%20the%20user%27s%20cursor%20moves%20over%20the%20box.%20%20NB%3A%20this%20is%20fake%20data</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::StickyNote" x="1260" y="28" w="259" h="71" measuredW="109" measuredH="123" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Here%20are%20some%20possible%20rough%20versions%20of%20the%20popups%20for%20the%20others%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::TextArea" x="1260" y="306" w="443" h="208" measuredW="200" measuredH="140" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <bold>false</bold>
+        <borderColor>0</borderColor>
+        <color>16777215</color>
+        <text>perturbagen%20type%2C%20count%2C%20examples%3A%0A%20%0Asmall%20molecule%20%283000%29%3A%0A%09drug%20%28300%29%3A%20simvastatin%2C%20warfarin%2C%20...%0A%09bioactive%20%281838%29%3A%20%20lorem%2C%20ipsum%2C%20dolor%2C%20...%0A%09sawdust%28831%29%3A%20oak%2C%20pine%2C%20lignum%20vitae%2C%20...%0A%20%0AshRNA%283838%29%3A%20%20BRAF%2C%20MUC1%2C%20...%0A%20%0AcDNA%287127%29%3A%20%20another%20gene%2C%20another%20gene%2C%20another%20gene%2C%20...%0A%20%0ACRISPR%281%29%3A%20%20deleted%20gene%20name%20here</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextArea" x="1260" y="544" w="394" h="106" measuredW="200" measuredH="140" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <bold>false</bold>
+        <borderColor>0</borderColor>
+        <color>16777215</color>
+        <text>curent%20assay%20protocols%20and%20counts%20of%20experiments%20for%20each%3A%0A%20%0AL1000%20%28most%29%0AP100%20%28some%29%0AImaging%20Assay%20%28some%29%0Aother%28the%20rest%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::TextArea" x="1260" y="675" w="292" h="114" measuredW="200" measuredH="140" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <bold>false</bold>
+        <borderColor>0</borderColor>
+        <color>16777215</color>
+        <text>most%20frequent%20cell-perturbagen%20combinations%20in%20experiments%3A%0A%20%0AA549%2C%20warfarin%20%28123%29%0AMFC7%2C%20aspirin%20%28103%29%0AB838%2C%20ibuproferin</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
