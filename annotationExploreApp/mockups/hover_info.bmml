@@ -57,7 +57,7 @@
         <bold>false</bold>
         <borderColor>0</borderColor>
         <color>16777215</color>
-        <text>most%20frequent%20cell-perturbagen%20combinations%20in%20experiments%3A%0A%20%0AA549%2C%20warfarin%20%28123%29%0AMFC7%2C%20aspirin%20%28103%29%0AB838%2C%20ibuproferin</text>
+        <text>most%20frequent%20cell-perturbagen%20combinations%20in%20experiments%3A%0A%20%0AA549%2C%20warfarin%20%28123%29%0AMFC7%2C%20aspirin%20%28103%29%0AB838%2C%20ibuproferin%20%2899%29</text>
       </controlProperties>
     </control>
   </controls>
