@@ -2,6 +2,7 @@ import logging
 import unittest
 import quantum_wavepacket
 import numpy
+import quantum_wavepacket.wavepacket as wp
 import quantum_wavepacket.periodic_boundary_condition_1D.pbc1d_calc_wavefun as cwf
 import quantum_wavepacket.periodic_boundary_condition_1D.pbc1d_params as pbc1d_params
 
@@ -15,22 +16,22 @@ class TestPbc1dCalcWavefun(unittest.TestCase):
 
         my_params = pbc1d_params.Pbc1dParams(periodic_length=100.0, num_x=100, duration=2, num_t=1)
 
-        wavepacket = [cwf.wavepacket_state_entry(1, 1)]
+        wavepacket = [wp.wavepacket_state_entry(1, 1)]
         psi = cwf.calc_in_position_space(wavepacket, my_params)
         logger.debug("psi[:10]:\n{}".format(psi[:10]))
         test_integral = numpy.vdot(psi, psi.T) * my_params.dx
         logger.debug("test_integral:  {}".format(test_integral))
         self.assertAlmostEqual(1.0, test_integral)
 
-        wavepacket = [cwf.wavepacket_state_entry(2, 1)]
+        wavepacket = [wp.wavepacket_state_entry(2, 1)]
         psi = cwf.calc_in_position_space(wavepacket, my_params)
         logger.debug("psi[:10]:\n{}".format(psi[:10]))
         test_integral = numpy.vdot(psi, psi.T) * my_params.dx
         logger.debug("test_integral:  {}".format(test_integral))
         self.assertAlmostEqual(1.0, test_integral)
 
-        wavepacket = [cwf.wavepacket_state_entry(1, 1.0/numpy.sqrt(2)),
-                    cwf.wavepacket_state_entry(2, 1.0/numpy.sqrt(2))]
+        wavepacket = [wp.wavepacket_state_entry(1, 1.0/numpy.sqrt(2)),
+                    wp.wavepacket_state_entry(2, 1.0/numpy.sqrt(2))]
         psi = cwf.calc_in_position_space(wavepacket, my_params)
         logger.debug("psi[:10]:\n{}".format(psi[:10]))
         test_integral = numpy.vdot(psi, psi.T) * my_params.dx

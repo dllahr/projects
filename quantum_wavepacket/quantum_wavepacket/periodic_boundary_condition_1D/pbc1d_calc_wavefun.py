@@ -4,16 +4,12 @@ spatial basis wavefunction is exp(ikx)*sqrt(1/L)
     n is integer positive or negative
     https://en.wikipedia.org/wiki/Particle_in_a_one-dimensional_lattice
 """
-import collections
 import numpy
-
-
-wavepacket_state_entry = collections.namedtuple("wavepacket_entry", ["state_index", "state_coef"])
 
 
 def calc_in_position_space(wavepacket_states, my_pbc1d_params):
     """params:
-        wavepacket_states - collection of wavepacket_state_entry's
+        wavepacket_states - collection of wavepacket_state_entry's (quantum_wavepacket.wavepacket)
         my_pbc1d_params - pbc1d_params object
     """
     x = my_pbc1d_params.x
