@@ -17,3 +17,7 @@ def integrate(psi, dx):
     integral = numpy.vdot(psi, psi.T) * dx
 
     return integral
+
+def calc_prob_dens(psi):
+    return numpy.conj(psi) * psi
+    

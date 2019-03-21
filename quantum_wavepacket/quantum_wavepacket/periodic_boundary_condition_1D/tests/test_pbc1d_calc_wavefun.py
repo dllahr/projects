@@ -39,6 +39,31 @@ class TestPbc1dCalcWavefun(unittest.TestCase):
         logger.debug("test_integral:  {}".format(test_integral))
         self.assertAlmostEqual(1.0, test_integral)
 
+    def test_calc_wavenumbers(self):
+        my_wavepacket = wavepacket.Wavepacket(state_indexes=[1,2,3], state_coefs=[None,None,None])
+        r = cwf.calc_wavenumbers(my_wavepacket, 11.0)
+        logger.debug("r:  {}".format(r))
+        self.assertAlmostEqual(6*numpy.pi/11.0, r[0])
+
+    def test_calc_state_energies(self):
+        my_wavepacket = wavepacket.Wavepacket(state_indexes=[1,2,3], state_coefs=[None,None,None])
+        r = cwf.calc_state_energies(my_wavepacket, 10.0)
+        logger.debug("r:  {}".format(r))
+        
+        k = cwf.calc_wavenumbers(my_wavepacket, 10.0)
+        logger.debug("k:  {}".format(k))
+        expected_E = k[0] * k[0] / 2.0
+        self.assertAlmostEqual(expected_E, r[0])
+
+    def test_calc_time_dependent_state_coef(self):
+        my_wavepacket = wavepacket.Wavepacket(state_indexes=[1,2,3], state_coefs=[None,None,None])
+        r = cwf.calc_time_dependent_state_coef(my_wavepacket, 11.0, 3.3)
+        logger.debug("r:  {}".format(r))
+
+        energies = cwf.calc_state_energies(my_wavepacket, 11.0)
+        expected0 = numpy.exp(-1j * energies[0] * 3.3)
+        self.assertAlmostEqual(expected0, r[0])
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG, 

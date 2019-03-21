@@ -18,6 +18,11 @@ class Pbc1dParams(object):
         self.dt = self.duration / float(self.num_t)
         self.t = Pbc1dParams._build_axis(self.num_t, self.dt)
         
+    def __str__(self):
+        r = """Pbc1dParams periodic_length:  {}  num_x:  {}  dx:  {}  x[:3]:  {}
+                duration:  {}  num_t:  {}  dt:  {}  t[:3]:  {}""".format(self.periodic_length, 
+                self.num_x, self.dx, self.x[:3], self.duration, self.num_t, self.dt, self.t[:3])
+        return r
 
     @staticmethod
     def _build_axis(num_x, dx):

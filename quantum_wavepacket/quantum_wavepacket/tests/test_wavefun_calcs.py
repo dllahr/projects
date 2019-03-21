@@ -22,6 +22,13 @@ class TestWavefunCalcs(unittest.TestCase):
         logger.debug("r:  {}".format(r))
         self.assertAlmostEqual(.34, r)
 
+    def test_calc_prob_dens(self):
+        psi = numpy.array([1j, 2, 3j])
+        r = wfc.calc_prob_dens(psi)
+        logger.debug("r:  {}".format(r))
+        self.assertAlmostEqual(1.0, r[0])
+        self.assertAlmostEqual(4.0, r[1])
+        self.assertAlmostEqual(9.0, r[2])
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG, format=quantum_wavepacket.LOG_FORMAT)

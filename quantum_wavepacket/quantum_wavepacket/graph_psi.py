@@ -20,5 +20,3 @@ def graph(psi, x, fig_title, filename=None):
     if filename is not None:
         logger.debug("writing graph to image filename:  {}".format(filename))
         pyplot.savefig(filename)
-
-    return fig

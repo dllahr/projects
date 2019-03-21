@@ -17,13 +17,34 @@ def calc_in_position_space(my_wavepacket, my_pbc1d_params):
 
     psi = numpy.zeros(x.shape)
 
-    for state_index, state_coef in zip(my_wavepacket.state_indexes, my_wavepacket.state_coefs):
-        #calculate wavevector
-        k = 2.0 * numpy.pi * float(state_index) / periodic_L
+    wavenumbers = calc_wavenumbers(my_wavepacket, periodic_L)
 
+    for wavenum_k, state_coef in zip(wavenumbers, my_wavepacket.state_coefs):
         #calculate base function
-        phi = numpy.exp(1j * k * (x - periodic_L/2.0)) * numpy.sqrt(1.0 / periodic_L)
+        phi = numpy.exp(1j * wavenum_k * (x - periodic_L/2.0)) * numpy.sqrt(1.0 / periodic_L)
 
         psi = psi + state_coef * phi
 
     return psi
+
+
+def calc_wavenumbers(my_wavepacket, periodic_L):
+    k = 2.0 * numpy.pi * my_wavepacket.state_indexes / periodic_L
+
+    return k
+
+
+def calc_state_energies(my_wavepacket, periodic_L):
+    k = calc_wavenumbers(my_wavepacket, periodic_L)
+
+    energies = numpy.power(k, 2.0) / 2.0
+
+    return energies
+
+
+def calc_time_dependent_state_coef(my_wavepacket, periodic_L, t):
+    state_energies = calc_state_energies(my_wavepacket, periodic_L)
+    
+    psi_t = numpy.exp(-1j * state_energies * t)
+
+    return psi_t
