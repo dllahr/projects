@@ -1,0 +1,182 @@
+<html>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        console.log("hello world");
+
+        var getInputs = function() {
+            var r = {
+                "N_loi":$("#inputNLoi").val(),
+                "N_reviewers":$("#inputNReviewers").val(),
+                "N_reviewers_per_loi":$("#inputNReviewersPerLoi").val()
+            };
+            return r;
+        };
+
+        var doCalc = function(N_loi, N_reviewers, N_reviewers_per_loi) {
+            var reviewers = [];
+            for (var i = 0; i < N_reviewers; i++) {
+                reviewers[i] = String.fromCharCode(i + 65);
+            }
+            // console.log("reviewers:  ");
+            // console.log(reviewers);
+
+            var reviewer_list = [];
+            while (reviewer_list.length < N_loi*N_reviewers_per_loi) {
+                reviewer_list.push(...reviewers);
+            }
+            reviewer_list = reviewer_list.slice(0, N_loi*N_reviewers_per_loi);
+            // console.log("reviewer_list:");
+            // console.log(reviewer_list)
+
+            var loi_list = [];
+            for (var i = 0; i < N_reviewers_per_loi; i++) {
+                var t = [];
+                for (var j = 0; j < N_loi; j++) {
+                    t[j] = j;
+                }
+
+                // create the shuffled list of loi ID's
+                for (var j = 0; j < N_loi; j++) {
+                    const ind = Math.floor(Math.random() * (N_loi - j)) + j;
+                    // console.log(ind);
+                    const u = t[j]
+                    t[j] = t[ind];
+                    t[ind] = u;
+                }
+                // console.log(t);
+                loi_list.push(...t);
+            }
+            // console.log("loi_list:");
+            // console.log(loi_list);
+
+            var r = {};
+            for (var i = 0; i < N_loi; i++) {
+                r[i] = [];
+            }
+
+            for (var i = 0; i < reviewer_list.length; i++) {
+                var cur_loi = loi_list[i];
+                r[cur_loi].push(reviewer_list[i]);
+            }
+
+            var find_dups = {};
+            for (var cur_loi in r) {
+                var cur_reviewers = r[cur_loi];
+                cur_reviewers.sort();
+
+                if (cur_reviewers in find_dups) {
+                    find_dups[cur_reviewers].push(cur_loi);
+                } else {
+                    find_dups[cur_reviewers] = [cur_loi];
+                }
+            }
+            // console.log("r:");
+            // console.log(r);
+
+            var dups = {};
+            for (var cur_reviewers in find_dups) {
+                var cur_lois = find_dups[cur_reviewers];
+                if (cur_lois.length > 1) {
+                    dups[cur_reviewers] = cur_lois;
+                }
+            }
+            // console.log("dups:");
+            // console.log(dups);
+
+            var reviewerCounts = {};
+            for (var i = 0; i < reviewer_list.length; i++) {
+                var cur_reviewer = reviewer_list[i];
+
+                var t = 1;
+                if (cur_reviewer in reviewerCounts) {
+                    t = reviewerCounts[cur_reviewer] + 1;
+                } 
+                reviewerCounts[cur_reviewer] = t;
+            }
+            console.log("reviewerCounts:");
+            console.log(reviewerCounts);
+
+            return {"assignments":r, "duplicates":dups, "reviewerCounts":reviewerCounts};
+        };
+
+        var displayResults = function(N_reviewers_per_loi, calcResults) {
+            var resultsTable = $("#tableResults");
+
+            var header = "<tr><th>LOI ID</th>";
+            for (var i = 0; i < N_reviewers_per_loi; i++) {
+                header += "<th>reviewer " + i + "</th>";
+            }
+            header += "</tr>";
+            resultsTable.html(header);
+
+            var body = "";
+            for (var cur_loi in calcResults.assignments) {
+                body += "<tr><td>" + cur_loi + "</td>";
+
+                
+                for (var i in calcResults.assignments[cur_loi]) {
+                    body += "<td>" + calcResults.assignments[cur_loi][i] + "</td>";
+                }
+                body += "</tr>";
+            }
+            resultsTable.append(body);
+
+            var duplicatesTable = $("#tableDuplicates");
+            duplicatesTable.html("<tr><th>reviewer set</th><th>LOI ID's</th></tr>");
+            body = "";
+            for (var cur_reviewer_set in calcResults.duplicates) {
+                body += "<tr><td>" + cur_reviewer_set + "</td>";
+
+                body += "<td>" + calcResults.duplicates[cur_reviewer_set].join("</td><td>") + "</td></tr>";
+            }
+            duplicatesTable.append(body);
+
+            var reviewerCountsTable = $("#tableReviewerCounts");
+            reviewerCountsTable.html("<tr><th>reviewer ID</th><th># of letters of intent</th></tr>");
+            body = "";
+            for (var cur_reviewer in calcResults.reviewerCounts) {
+                body += "<tr><td>" + cur_reviewer + "</td>";
+
+                body += "<td>" + calcResults.reviewerCounts[cur_reviewer] + "</td></tr>";
+            }
+            reviewerCountsTable.append(body);
+        };
+
+        var doEverything = function() {
+            var inputs = getInputs();
+
+            var calcResults = doCalc(inputs.N_loi, inputs.N_reviewers, inputs.N_reviewers_per_loi);
+
+            displayResults(inputs.N_reviewers_per_loi, calcResults);
+        };
+
+        $(document).ready(function () {
+            $("#buttonRunCalculation").click(doEverything);
+            doEverything();
+        });
+    </script>
+    <body>
+        <h1>calculate assignment of reviewers to letters of intent</h1>
+        <div>
+            Number of letters of intent (N_loi):  <input type=number id=inputNLoi value=151><br/>
+            Number of reviewers (N_reviewers):  <input type=number id=inputNReviewers value=22><br/>
+            Number of reviewers per letter of intent (N_reviewers_per_loi):  <input type=number id=inputNReviewersPerLoi value=3><br/>
+            <input type=button value="run calculation" id=buttonRunCalculation>
+        </div>
+        <br/>
+        <div id=divOutput>
+            <table id=tableDuplicates cellpadding=5>
+            </table>
+            <br/>
+            <table id=tableReviewerCounts cellpadding=5>
+            </table>
+            <br/>
+            <table id=tableResults cellpadding=5>
+            </table>
+        </div>
+    </body>
+</html>
